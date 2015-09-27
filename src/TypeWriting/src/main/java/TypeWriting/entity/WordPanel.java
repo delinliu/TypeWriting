@@ -11,12 +11,22 @@ import TypeWriting.config.Config;
 @SuppressWarnings("serial")
 public class WordPanel extends JPanel {
 
+	// 用于显示文字信息的Label
 	private JLabel textLabel;
 
+	// 文字信息生成的时间长度
 	private long time;
+	
+	// 类型，INSERT或REMOVE
 	private String type;
+	
+	// 文字信息
 	private String text;
+	
+	// 文字信息在全文中的offset
 	private int offset;
+	
+	// 文字信息的长度
 	private int length;
 
 	public WordPanel() {

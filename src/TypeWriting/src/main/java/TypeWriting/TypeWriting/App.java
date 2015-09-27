@@ -20,14 +20,14 @@ public class App {
 
 	public void init() {
 
-		// initiate frame
+		// 初始化主窗口
 		frame = new JFrame(Config.FrameTitle);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(Config.FrameWidth, Config.FrameHeight);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
 
-		// initiate frame's content pane
+		// 初始化内容面板
 		contentPanel.init();
 		Dimension sz = frame.getContentPane().getSize();
 		contentPanel.setSize(sz);

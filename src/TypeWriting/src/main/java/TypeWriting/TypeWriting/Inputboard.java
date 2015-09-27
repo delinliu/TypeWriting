@@ -4,18 +4,19 @@ import javax.annotation.Resource;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
 import org.springframework.stereotype.Component;
-
 import TypeWriting.config.Config;
 import TypeWriting.listener.InputDocumentListener;
 
+/**
+ * 文字输入面板
+ */
 @SuppressWarnings("serial")
 @Component("Inputboard")
 public class Inputboard extends JTextArea {
 
 	private JScrollPane scrollPane;
-	
+
 	@Resource(name = "InputDocumentListener")
 	private InputDocumentListener inputDocumentListener;
 

@@ -1,12 +1,16 @@
 package TypeWriting.entity;
 
+/**
+ * 用于传递文字增删信息的实体类。
+ */
 public class DocumentMessage {
 
-	private String type;
-	private int offset;
-	private int length;
-	private String text;
-	private long timestamp;
+	private String type; // 有INSERT、REMOVE两种
+	
+	private int offset; // 文字信息在全文中的offset
+	private int length; // 文字信息的长度
+	private String text; // 文字信息
+	private long timestamp; // 操作时的系统时间
 
 	public DocumentMessage(String type, int offset, int length, String text,
 			long timestamp) {

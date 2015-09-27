@@ -3,24 +3,28 @@ package TypeWriting.TypeWriting;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import org.springframework.stereotype.Component;
-
 import TypeWriting.config.Config;
 import TypeWriting.entity.WordPanel;
 
+/**
+ * 用于展示打字速度的子窗口
+ */
 @SuppressWarnings("serial")
 @Component("Displayboard")
 public class Displayboard extends JPanel {
 
 	private JScrollPane scrollPane;
 
+	// WordPanel队列
 	private List<WordPanel> wordQueue = new ArrayList<WordPanel>();
 
+	/**
+	 * 收到了一个信息，调整展示内容并刷新显示。
+	 */
 	public void receiveWord(long time, String type, String text, int offset,
 			int length) {
 		WordPanel word = new WordPanel(time, type, text, offset, length);

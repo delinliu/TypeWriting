@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 import TypeWriting.config.Config;
 import TypeWriting.listener.BlackboardSelectedListener;
 
+/**
+ * 用于展示文章。
+ */
 @SuppressWarnings("serial")
 @Component("Blackboard")
 public class Blackboard extends JTextPane {
