@@ -27,7 +27,7 @@ public class Config {
 	public final static String InputboardBoarderTitle = "输入框";
 	public final static String DisplayboardBoarderTitle = "打字速度记录框";
 
-	public final static String HintDefaultText = "用鼠标选中对照框中的汉子能够显示拼音。";
+	public final static String HintDefaultText = "用鼠标选中对照框中的汉字能够显示拼音。";
 
 	public final static SimpleAttributeSet FineAttrSet;
 	public final static SimpleAttributeSet FailAttrSet;
