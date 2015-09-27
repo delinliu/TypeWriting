@@ -28,7 +28,7 @@ public class App {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
 
-		// initiate frame's content pane 
+		// initiate frame's content pane
 		contentPanel.init();
 		Dimension sz = Toolkit.getDefaultToolkit().getScreenSize();
 		contentPanel.setSize(sz);

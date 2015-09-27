@@ -19,8 +19,7 @@ public class Hintboard extends JTextArea {
 
 	public void initStyle() {
 		setFont(Config.BoardFont);
-		this.setEditable(false);
-		setLineWrap(true);
-		setWrapStyleWord(true);
+		setEditable(false);
+		setLineWrap(false);
 	}
 }
