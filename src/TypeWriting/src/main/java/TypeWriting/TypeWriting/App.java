@@ -1,7 +1,6 @@
 package TypeWriting.TypeWriting;
 
 import java.awt.Dimension;
-import java.awt.Toolkit;
 
 import javax.annotation.Resource;
 import javax.swing.JFrame;
@@ -30,7 +29,7 @@ public class App {
 
 		// initiate frame's content pane
 		contentPanel.init();
-		Dimension sz = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension sz = frame.getContentPane().getSize();
 		contentPanel.setSize(sz);
 		frame.setContentPane(contentPanel);
 	}
