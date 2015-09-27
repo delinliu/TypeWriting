@@ -13,10 +13,10 @@ public class Config {
 	public final static int FrameWidth = 1400;
 	public final static int FrameHeight = 900;
 
-	public final static Color ContentBackground = new Color(200, 200, 200);
-	public final static int ContentPadding = 5;
+	public final static Color ContentBackground = Color.WHITE;
+	public final static int ContentPadding = 2;
 	public final static int ContentVGap = 0;
-	public final static int ContentHGap = 4;
+	public final static int ContentHGap = 2;
 	public final static int HintHeight = 30;
 
 	public final static Font BoardFont = new Font("宋体", Font.PLAIN, 18);
@@ -25,6 +25,7 @@ public class Config {
 	public final static Font BoardBorderFont = new Font("幼圆", Font.PLAIN, 13);
 	public final static String BlackboardBoarderTitle = "对照框";
 	public final static String InputboardBoarderTitle = "输入框";
+	public final static String DisplayboardBoarderTitle = "打字速度记录框";
 
 	public final static String HintDefaultText = "用鼠标选中对照框中的汉子能够显示拼音。";
 

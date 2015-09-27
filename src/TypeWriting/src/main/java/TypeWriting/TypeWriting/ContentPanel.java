@@ -20,6 +20,8 @@ public class ContentPanel extends JPanel implements ComponentListener {
 	private Inputboard inputboard;
 	@Resource(name = "Hintboard")
 	private Hintboard hintboard;
+	@Resource(name = "Displayboard")
+	private Displayboard displayboard;
 
 	public void init() {
 
@@ -35,10 +37,15 @@ public class ContentPanel extends JPanel implements ComponentListener {
 		// initiate Inputboard
 		inputboard.init();
 		add(inputboard.getScrollPane());
-		
+
+		// initiate Hintboard
 		hintboard.init();
 		add(hintboard);
-		
+
+		// initiate Displayboard
+		displayboard.init();
+		add(displayboard.getScrollPane());
+
 		addComponentListener(this);
 	}
 
@@ -50,27 +57,35 @@ public class ContentPanel extends JPanel implements ComponentListener {
 		int height = this.getHeight();
 
 		int padding = Config.ContentPadding;
-		int gap = Config.ContentVGap;
+		int vGap = Config.ContentVGap;
+		int hGap = Config.ContentHGap;
 		int hintH = Config.HintHeight;
 
 		// set location and size of Blackboard and apply
 		int boardWidth = width / 2 - padding;
-		int boardHeight = (height - padding * 2 - gap * 2 - hintH) / 2;
+		int boardHeight = (height - padding * 2 - vGap * 2 - hintH) / 2;
 		blackboard.getScrollPane().setLocation(padding, padding);
 		blackboard.getScrollPane().setSize(boardWidth, boardHeight);
 		blackboard.setSize(boardWidth, boardHeight);
 		blackboard.repaint();
 
 		// set location and size of Inputboard and apply
-		inputboard.getScrollPane().setLocation(padding, padding + boardHeight + gap * 2
-				+ hintH);
+		inputboard.getScrollPane().setLocation(padding,
+				padding + boardHeight + vGap * 2 + hintH);
 		inputboard.getScrollPane().setSize(boardWidth, boardHeight);
 		inputboard.setSize(boardWidth, boardHeight);
 		inputboard.repaint();
-		
-		// set location and size of Hintboard and apply 
-		hintboard.setLocation(padding, padding + boardHeight + gap);
+
+		// set location and size of Hintboard and apply
+		hintboard.setLocation(padding, padding + boardHeight + vGap);
 		hintboard.setSize(boardWidth, hintH);
+
+		displayboard.getScrollPane().setLocation(padding + boardWidth + hGap,
+				padding);
+		displayboard.getScrollPane().setSize(
+				width - padding * 2 - boardWidth - hGap, height - padding * 2);
+		displayboard.setSize(width - padding * 2 - boardWidth - hGap, height
+				- padding * 2);
 	}
 
 	@Override
