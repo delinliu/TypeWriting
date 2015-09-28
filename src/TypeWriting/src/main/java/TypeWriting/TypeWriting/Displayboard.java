@@ -3,15 +3,10 @@ package TypeWriting.TypeWriting;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import org.springframework.stereotype.Component;
-
 import TypeWriting.config.Config;
 import TypeWriting.entity.WordPanel;
 
@@ -27,8 +22,41 @@ public class Displayboard extends JPanel {
 	// WordPanel队列
 	private List<WordPanel> wordQueue = new ArrayList<WordPanel>();
 
+	// 用于记录需要移除的Word的变量，以及保护它的锁
 	private Object removeLock = new Object();
 	private WordPanel needToRemove = null;
+	
+	// 记录设置需要移除的Word时的系统时间
+	private long removeTime = 0;
+
+	public Displayboard() {
+		new RemoveThread().start();
+	}
+
+	class RemoveThread extends Thread {
+
+		@Override
+		public void run() {
+			while (true) {
+				try {
+					
+					// 每隔一定时间才执行，减小系统消耗
+					Thread.sleep(Config.DisplayBoardRemoveTime);
+					
+					synchronized (removeLock) {
+						
+						// 如果超过了阈值，那么就移除掉需要移除的Word
+						if (needToRemove != null
+								&& System.currentTimeMillis() - removeTime > Config.DisplayBoardRemoveCeil) {
+							clearRemoveWord();
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
 	/**
 	 * 收到了一个信息，调整展示内容并刷新显示。
@@ -173,6 +201,7 @@ public class Displayboard extends JPanel {
 				&& start.getLength() == word.getLength()) {
 			synchronized (removeLock) {
 				needToRemove = start;
+				removeTime = System.currentTimeMillis();
 			}
 
 			return;

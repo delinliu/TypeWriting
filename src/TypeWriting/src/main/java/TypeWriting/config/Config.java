@@ -64,6 +64,12 @@ public class Config {
 	
 	// DisplayBoard中词的边框宽度
 	public final static boolean DisplayBoardWordBorder = false;
+	
+	// DisplayBoard中Remove线程的循环间隔
+	public final static long DisplayBoardRemoveTime = 50;
+	
+	// DisplayBoard中Remove线程执行删除操作的阈值
+	public final static long DisplayBoardRemoveCeil = 100;
 
 	// Blackboard中正确、错误、普通，三种样式
 	public final static SimpleAttributeSet FineAttrSet;
