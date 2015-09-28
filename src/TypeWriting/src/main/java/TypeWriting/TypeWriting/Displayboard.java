@@ -3,10 +3,15 @@ package TypeWriting.TypeWriting;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
 import org.springframework.stereotype.Component;
+
 import TypeWriting.config.Config;
 import TypeWriting.entity.WordPanel;
 
@@ -21,6 +26,9 @@ public class Displayboard extends JPanel {
 
 	// WordPanel队列
 	private List<WordPanel> wordQueue = new ArrayList<WordPanel>();
+
+	private Object removeLock = new Object();
+	private WordPanel needToRemove = null;
 
 	/**
 	 * 收到了一个信息，调整展示内容并刷新显示。
@@ -59,6 +67,19 @@ public class Displayboard extends JPanel {
 	 * 否则需要拆分原有的某个WordPanel，然后再新增。
 	 */
 	private void insertWord(WordPanel word) {
+
+		synchronized (removeLock) {
+			if (needToRemove != null
+					&& needToRemove.getOffset() == word.getOffset()) {
+				needToRemove.setText(word.getText());
+				needToRemove.setTime(word.getTime());
+				needToRemove.setType(word.getType());
+				needToRemove.setLength(word.getLength());
+				needToRemove.refresh();
+				needToRemove = null;
+				return;
+			}
+		}
 
 		int index = findFirstWordIndex(word.getOffset());
 
@@ -120,11 +141,24 @@ public class Displayboard extends JPanel {
 		}
 	}
 
+	private void clearRemoveWord() {
+		synchronized (removeLock) {
+			if (needToRemove != null) {
+				wordQueue.remove(needToRemove);
+				remove(needToRemove);
+				needToRemove = null;
+			}
+		}
+		repaint();
+	}
+
 	/**
 	 * 接收到删除一段文字的信息时调用此方法。 把需要删除的文字的跨度范围内的所有WordPanel都删除的。
 	 * 在两端的WordPanel有时候需要拆分开，因为被删除的文字可能只涉及到它们的Text的一部分。
 	 */
 	private void removeWord(WordPanel word) {
+
+		clearRemoveWord();
 
 		int index = findFirstWordIndex(word.getOffset());
 		if (index < 0 || index > wordQueue.size()) {
@@ -133,6 +167,16 @@ public class Displayboard extends JPanel {
 
 		// 找到最开始受影响的一个
 		WordPanel start = wordQueue.get(index);
+
+		// 如果是删除掉这一个
+		if (start.getOffset() == word.getOffset()
+				&& start.getLength() == word.getLength()) {
+			synchronized (removeLock) {
+				needToRemove = start;
+			}
+
+			return;
+		}
 
 		// 最开始受影响的剩余部分
 		String leftText = start.getText().substring(0,

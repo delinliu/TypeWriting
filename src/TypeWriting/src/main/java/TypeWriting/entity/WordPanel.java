@@ -60,6 +60,20 @@ public class WordPanel extends JPanel {
 		this.length = length;
 	}
 
+	public void refresh() {
+		textLabel.setText(text);
+		textLabel.setBackground(getTextColor(time));
+		int textWidth = textLabel.getPreferredSize().width;
+		int textHeight = textLabel.getPreferredSize().height;
+		timeLabel.setText(getTimeText(time));
+		int timeWidth = timeLabel.getPreferredSize().width;
+		int timeHeight = timeLabel.getPreferredSize().height;
+		int width = Math.max(textWidth, timeWidth);
+		textLabel.setSize(width, textHeight);
+		timeLabel.setSize(width, timeHeight);
+		setSize(Math.max(textWidth, timeWidth), textHeight + timeHeight);
+	}
+
 	public void init() {
 
 		textLabel = new JLabel();

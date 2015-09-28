@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 import TypeWriting.config.Config;
 
 /**
- * 进行打字练习的时候的主内容面板。
- * 负责Blackboard、Inputboard、Hintboard、Displayboard的排版。
+ * 进行打字练习的时候的主内容面板。 负责Blackboard、Inputboard、Hintboard、Displayboard的排版。
  */
 @SuppressWarnings("serial")
 @Component("ContentPanel")
@@ -84,7 +83,9 @@ public class ContentPanel extends JPanel implements ComponentListener {
 				padding);
 		displayboard.getScrollPane().setSize(
 				width - padding * 2 - boardWidth - hGap, height - padding * 2);
-		
+		displayboard.setSize(width - padding * 2 - boardWidth - hGap - 15,
+				displayboard.getHeight());
+
 		// 刷新展示面板
 		displayboard.reshowWords();
 	}
