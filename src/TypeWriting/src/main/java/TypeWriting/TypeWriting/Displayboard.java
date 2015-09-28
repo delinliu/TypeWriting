@@ -234,6 +234,11 @@ public class Displayboard extends JPanel {
 				left -= 1;
 			}
 		}
+
+		int height = scrollPane.getHeight();
+		setSize(width, Math.max(height - 30, top + wordHeight));
+		setPreferredSize(getSize());
+
 		repaint();
 	}
 

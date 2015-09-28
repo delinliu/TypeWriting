@@ -84,8 +84,6 @@ public class ContentPanel extends JPanel implements ComponentListener {
 				padding);
 		displayboard.getScrollPane().setSize(
 				width - padding * 2 - boardWidth - hGap, height - padding * 2);
-		displayboard.setSize(width - padding * 2 - boardWidth - hGap, height
-				- padding * 2);
 		
 		// 刷新展示面板
 		displayboard.reshowWords();
