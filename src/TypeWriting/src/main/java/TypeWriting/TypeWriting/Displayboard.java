@@ -212,6 +212,16 @@ public class Displayboard extends JPanel {
 				word.setOffset(offset);
 				word.setLength(word.getText().length());
 				offset += word.getLength();
+
+				// 如果是换行
+				if ("\r".equals(word.getText())
+						|| "\r\n".equals(word.getText())
+						|| "\n".equals(word.getText())) {
+					word.setLocation(-1000, -1000);
+					left = paddingLeft;
+					top += wordHeight;
+					continue;
+				}
 			}
 			int wordWidth = word.getWidth();
 			if (wordWidth + left > width && left > paddingLeft) {

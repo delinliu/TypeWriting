@@ -56,9 +56,9 @@ public class DocumentMessageManager {
 	class MessageHandler extends Thread {
 
 		/**
-		 * 发送一个REMOVE的消息给Displayboard
+		 * 发送一个消息给Displayboard
 		 */
-		private void sendRemove(int seq) {
+		private void sendOne(int seq) {
 			DocumentMessage msg = messageQueue.get(seq);
 			displayboard.receiveWord(0, msg.getType(), msg.getText(),
 					msg.getOffset(), msg.getLength());
@@ -149,6 +149,15 @@ public class DocumentMessageManager {
 									isOK = true;
 									mode = 1;
 
+									// 如果是插入操作，而且是换行，那么之后操作与REMOVE相同
+								} else if ("INSERT".equals(message.getType())
+										&& ("\r".equals(message.getText())
+												|| "\r\n".equals(message
+														.getText()) || "\n"
+													.equals(message.getText()))) {
+									isOK = true;
+									mode = 1;
+
 									// 如果是插入操作，而且在此之前还有信息未发送
 								} else if ("INSERT".equals(message.getType())
 										&& sequence > 0
@@ -193,7 +202,7 @@ public class DocumentMessageManager {
 					switch (mode) {
 					case 1: // 最后处理的信息是REMOVE，那么需要把这个信息之前所有的信息组合起来发送，然后再发送这个信息
 						sendRange(sendSequence, sequence - 2);
-						sendRemove(sequence - 1);
+						sendOne(sequence - 1);
 						sendSequence = sequence;
 						break;
 					case 2: // 最后处理的信息是INSERT，那么需要把这个信息之前所有的信息组合起来发送，但是不发送这个信息
