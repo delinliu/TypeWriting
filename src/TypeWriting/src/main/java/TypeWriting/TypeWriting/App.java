@@ -24,8 +24,11 @@ public class App {
 		frame = new JFrame(Config.FrameTitle);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(Config.FrameWidth, Config.FrameHeight);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
+		if (Config.FrameFullScreen) {
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		}
+		
 
 		// 初始化内容面板
 		contentPanel.init();

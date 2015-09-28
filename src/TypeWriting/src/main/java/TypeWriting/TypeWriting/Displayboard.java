@@ -55,8 +55,7 @@ public class Displayboard extends JPanel {
 	}
 
 	/**
-	 * 接收到新增一段文字的信息时调用此方法。
-	 * 如果插入这段文字不需要拆分已有的WordPanel，那么就只新增一个WordPanel。
+	 * 接收到新增一段文字的信息时调用此方法。 如果插入这段文字不需要拆分已有的WordPanel，那么就只新增一个WordPanel。
 	 * 否则需要拆分原有的某个WordPanel，然后再新增。
 	 */
 	private void insertWord(WordPanel word) {
@@ -122,8 +121,7 @@ public class Displayboard extends JPanel {
 	}
 
 	/**
-	 * 接收到删除一段文字的信息时调用此方法。
-	 * 把需要删除的文字的跨度范围内的所有WordPanel都删除的。
+	 * 接收到删除一段文字的信息时调用此方法。 把需要删除的文字的跨度范围内的所有WordPanel都删除的。
 	 * 在两端的WordPanel有时候需要拆分开，因为被删除的文字可能只涉及到它们的Text的一部分。
 	 */
 	private void removeWord(WordPanel word) {
@@ -198,10 +196,15 @@ public class Displayboard extends JPanel {
 	}
 
 	private void showWords() {
+
+		int paddingLeft = Config.DisplayBoardPaddingLeft;
+		int paddingTop = Config.DisplayBoardPaddingTop;
+		int wordHeight = Config.DisplayBoardWordHeight;
+		int wordGap = Config.DisplayBoardWordGap;
+		boolean wordBorder = Config.DisplayBoardWordBorder;
 		int width = getWidth();
-		int top = 0;
-		int left = 0;
-		int wordHeight = 50;
+		int top = paddingTop;
+		int left = paddingLeft;
 		int offset = 0;
 		for (int i = 0; i < wordQueue.size(); i++) {
 			WordPanel word = wordQueue.get(i);
@@ -211,12 +214,15 @@ public class Displayboard extends JPanel {
 				offset += word.getLength();
 			}
 			int wordWidth = word.getWidth();
-			if (wordWidth + left > width && left > 0) {
-				left = 0;
+			if (wordWidth + left > width && left > paddingLeft) {
+				left = paddingLeft;
 				top += wordHeight;
 			}
 			word.setLocation(left, top);
-			left += wordWidth + 2;
+			left += wordWidth + wordGap;
+			if (wordBorder) {
+				left -= 1;
+			}
 		}
 		repaint();
 	}

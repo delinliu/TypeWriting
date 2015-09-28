@@ -9,26 +9,63 @@ import javax.swing.text.StyleConstants;
 
 public class Config {
 
+	// 主窗口的标题
 	public final static String FrameTitle = "打字练习";
+	
+	// 主窗口是否全屏
+	public final static boolean FrameFullScreen = true;
+	
+	// 主窗口的默认宽高
 	public final static int FrameWidth = 1400;
 	public final static int FrameHeight = 900;
 
+	// 打字主面板的背景色
 	public final static Color ContentBackground = Color.WHITE;
+	
+	// 打字主面板四周的空隙
 	public final static int ContentPadding = 2;
+	
+	// 打字主面板里子部件y轴方向的间隔
 	public final static int ContentVGap = 0;
+	
+	// 打字主面板里子部件x轴方向的间隔
 	public final static int ContentHGap = 2;
+	
+	// 提示面包板的高度
 	public final static int HintHeight = 30;
 
+	// 各个Board的字体
 	public final static Font BoardFont = new Font("宋体", Font.PLAIN, 18);
+	
+	// 各个Board的颜色
 	public final static Color BoardColor = Color.WHITE;
 
+	// 各个Board标题的字体
 	public final static Font BoardBorderFont = new Font("幼圆", Font.PLAIN, 13);
+	
+	// 各个Board的标题
 	public final static String BlackboardBoarderTitle = "对照框";
 	public final static String InputboardBoarderTitle = "输入框";
 	public final static String DisplayboardBoarderTitle = "打字速度记录框";
 
+	// HintBoard的默认文本
 	public final static String HintDefaultText = "用鼠标选中对照框中的汉字能够显示拼音。";
+	
+	// 多个INSERT的信息连在一起的时候，如果在这个时间里面，则会绑在一起显示
+	public final static long SendTimeGap = 100;
 
+	// DisplayBoard内容的PaddingLeft、PaddingTop
+	public final static int DisplayBoardPaddingLeft = 10;
+	public final static int DisplayBoardPaddingTop = 10;
+	
+	// DisplayBoard每行的高度，每两个词之间的间隙
+	public final static int DisplayBoardWordHeight = 50;
+	public final static int DisplayBoardWordGap = 0;
+	
+	// DisplayBoard中词的边框宽度
+	public final static boolean DisplayBoardWordBorder = false;
+
+	// Blackboard中正确、错误、普通，三种样式
 	public final static SimpleAttributeSet FineAttrSet;
 	public final static SimpleAttributeSet FailAttrSet;
 	public final static SimpleAttributeSet PlainAttrSet;
