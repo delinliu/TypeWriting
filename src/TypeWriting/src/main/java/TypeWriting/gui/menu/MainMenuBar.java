@@ -1,4 +1,4 @@
-package TypeWriting.menu;
+package TypeWriting.gui.menu;
 
 import javax.annotation.Resource;
 import javax.swing.JMenuBar;

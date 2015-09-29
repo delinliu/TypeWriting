@@ -1,4 +1,4 @@
-package TypeWriting.menu;
+package TypeWriting.gui.menu;
 
 import javax.swing.JMenuItem;
 import TypeWriting.config.Config;
