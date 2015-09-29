@@ -10,31 +10,37 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import TypeWriting.config.Config;
+import TypeWriting.menu.MainMenuBar;
 
 @Service("App")
 public class App {
-	private JFrame frame;
+	private JFrame frame = new JFrame();
 
 	@Resource(name = "ContentPanel")
 	private ContentPanel contentPanel;
 
+	@Resource(name = "MainMenuBar")
+	private MainMenuBar mainMenuBar;
+
 	public void init() {
 
-		// 初始化主窗口
-		frame = new JFrame(Config.FrameTitle);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(Config.FrameWidth, Config.FrameHeight);
-		frame.setVisible(true);
-		if (Config.FrameFullScreen) {
-			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		}
-		
+		// 初始化菜单
+		mainMenuBar.init();
+		frame.setJMenuBar(mainMenuBar);
 
 		// 初始化内容面板
 		contentPanel.init();
-		Dimension sz = frame.getContentPane().getSize();
-		contentPanel.setSize(sz);
 		frame.setContentPane(contentPanel);
+
+		// 初始化主窗口
+		frame.setTitle(Config.FrameTitle);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		if (Config.FrameFullScreen) {
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		} else {
+			frame.setSize(Config.FrameWidth, Config.FrameHeight);
+		}
+		frame.setVisible(true);
 	}
 
 	@SuppressWarnings("resource")

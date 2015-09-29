@@ -13,7 +13,7 @@ public class Config {
 	public final static String FrameTitle = "打字练习";
 	
 	// 主窗口是否全屏
-	public final static boolean FrameFullScreen = true;
+	public final static boolean FrameFullScreen = false;
 	
 	// 主窗口的默认宽高
 	public final static int FrameWidth = 1400;
@@ -70,6 +70,15 @@ public class Config {
 	
 	// DisplayBoard中Remove线程执行删除操作的阈值
 	public final static long DisplayBoardRemoveCeil = 200;
+	
+	// 菜单的字体、背景色
+	public final static Font MenuFont = new Font("幼圆", Font.PLAIN, 14);
+	public final static Color MenuBackgroundColor = Color.WHITE;
+	
+	// 开始菜单及其子项的标题
+	public final static String MenuStartTitle = "开始";
+	public final static String MenuStartItem1 = "选择文章";
+	public final static String MenuStartItem2 = "管理文章";
 
 	// Blackboard中正确、错误、普通，三种样式
 	public final static SimpleAttributeSet FineAttrSet;
