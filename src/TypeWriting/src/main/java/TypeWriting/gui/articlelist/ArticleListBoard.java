@@ -63,6 +63,10 @@ public class ArticleListBoard extends JList implements ListSelectionListener {
 			e.printStackTrace();
 		}
 	}
+	
+	public void display(){
+		initContent();
+	}
 
 	public void init() {
 		setBackground(Color.WHITE);

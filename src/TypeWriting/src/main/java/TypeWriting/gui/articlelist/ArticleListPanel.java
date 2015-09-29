@@ -16,6 +16,10 @@ public class ArticleListPanel extends JPanel implements ComponentListener {
 	@Resource(name = "ArticleListBoard")
 	private ArticleListBoard articleListBoard;
 
+	public void display() {
+		articleListBoard.display();
+	}
+	
 	public void init() {
 		setBackground(Color.WHITE);
 		setLayout(null);

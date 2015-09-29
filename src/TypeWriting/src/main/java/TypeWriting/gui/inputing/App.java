@@ -32,6 +32,7 @@ public class App {
 		if ("ArticleListPanel".equals(name)) {
 			frame.setTitle(Config.FrameTitle);
 			frame.setContentPane(articleListPanel);
+			articleListPanel.display();
 		}
 		frame.validate();
 	}
