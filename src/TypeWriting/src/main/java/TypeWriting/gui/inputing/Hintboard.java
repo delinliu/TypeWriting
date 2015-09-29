@@ -1,4 +1,4 @@
-package TypeWriting.TypeWriting;
+package TypeWriting.gui.inputing;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextArea;

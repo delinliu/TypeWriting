@@ -7,8 +7,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
-import TypeWriting.TypeWriting.Displayboard;
 import TypeWriting.config.Config;
+import TypeWriting.gui.inputing.Displayboard;
 
 /**
  * 开设一个线程专门接收文字信息，然后经过稍微处理再把它传给Displayboard。

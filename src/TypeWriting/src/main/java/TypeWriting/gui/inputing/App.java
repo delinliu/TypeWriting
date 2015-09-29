@@ -1,14 +1,10 @@
-package TypeWriting.TypeWriting;
-
-import java.awt.Dimension;
+package TypeWriting.gui.inputing;
 
 import javax.annotation.Resource;
 import javax.swing.JFrame;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
-
 import TypeWriting.config.Config;
 import TypeWriting.menu.MainMenuBar;
 

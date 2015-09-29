@@ -1,4 +1,4 @@
-package TypeWriting.TypeWriting;
+package TypeWriting.gui.inputing;
 
 import java.awt.Color;
 import java.util.ArrayList;

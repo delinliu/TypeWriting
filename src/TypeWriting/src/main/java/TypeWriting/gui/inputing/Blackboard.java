@@ -1,4 +1,4 @@
-package TypeWriting.TypeWriting;
+package TypeWriting.gui.inputing;
 
 import javax.annotation.Resource;
 import javax.swing.BorderFactory;

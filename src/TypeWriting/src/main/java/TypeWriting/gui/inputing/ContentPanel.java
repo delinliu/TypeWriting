@@ -1,4 +1,4 @@
-package TypeWriting.TypeWriting;
+package TypeWriting.gui.inputing;
 
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;

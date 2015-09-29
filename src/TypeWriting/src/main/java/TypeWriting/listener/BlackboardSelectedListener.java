@@ -2,16 +2,20 @@ package TypeWriting.listener;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.annotation.Resource;
+
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+
 import org.springframework.stereotype.Component;
-import TypeWriting.TypeWriting.Blackboard;
-import TypeWriting.TypeWriting.Hintboard;
+
 import TypeWriting.config.Config;
+import TypeWriting.gui.inputing.Blackboard;
+import TypeWriting.gui.inputing.Hintboard;
 
 /**
  * 在Blackboard中选中一段文字后，把其中的中文转成拼音，展示在Hintboard中。

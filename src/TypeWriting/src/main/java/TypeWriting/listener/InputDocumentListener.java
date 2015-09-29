@@ -7,12 +7,14 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.StyledDocument;
+
 import org.springframework.stereotype.Component;
-import TypeWriting.TypeWriting.Blackboard;
-import TypeWriting.TypeWriting.Inputboard;
+
 import TypeWriting.config.Config;
 import TypeWriting.entity.DocumentMessage;
 import TypeWriting.entity.DocumentMessageManager;
+import TypeWriting.gui.inputing.Blackboard;
+import TypeWriting.gui.inputing.Inputboard;
 
 /**
  * 监听Inputboard的文本变化，并进行相应的处理（更新Blackboard中文字样式、发送文字信息给DocumentMessageManager）
