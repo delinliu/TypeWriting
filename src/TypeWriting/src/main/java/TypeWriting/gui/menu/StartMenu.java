@@ -3,11 +3,13 @@ package TypeWriting.gui.menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.annotation.Resource;
 import javax.swing.JMenu;
 
 import org.springframework.stereotype.Component;
 
 import TypeWriting.config.Config;
+import TypeWriting.gui.inputing.App;
 
 /**
  * 开始菜单
@@ -20,6 +22,9 @@ public class StartMenu extends JMenu {
 			Config.MenuStartItem1);
 	private StyleMenuItem linkManageArticle = new StyleMenuItem(
 			Config.MenuStartItem2);
+
+	@Resource(name = "App")
+	private App app;
 
 	public void init() {
 
@@ -37,7 +42,7 @@ public class StartMenu extends JMenu {
 		linkIndexPage.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				app.switchContent("ArticleListPanel");
 			}
 		});
 	}

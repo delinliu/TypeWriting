@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
@@ -79,7 +80,7 @@ public class Config {
 	public final static String MenuStartTitle = "开始";
 	public final static String MenuStartItem1 = "选择文章";
 	public final static String MenuStartItem2 = "管理文章";
-
+	
 	// Blackboard中正确、错误、普通，三种样式
 	public final static SimpleAttributeSet FineAttrSet;
 	public final static SimpleAttributeSet FailAttrSet;
@@ -96,6 +97,12 @@ public class Config {
 
 	static {
 		try {
+//			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+//		        if ("Nimbus".equals(info.getName())) {
+//		            UIManager.setLookAndFeel(info.getClassName());
+//		            break;
+//		        }
+//		    }
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 		}
