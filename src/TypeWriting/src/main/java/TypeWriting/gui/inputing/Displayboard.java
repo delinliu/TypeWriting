@@ -32,6 +32,15 @@ public class Displayboard extends JPanel {
 	public Displayboard() {
 		new RemoveThread().start();
 	}
+	
+	public void clear(){
+		synchronized (removeLock) {
+			needToRemove = null;
+			wordQueue.clear();
+			removeTime = 0;
+			removeAll();
+		}
+	}
 
 	class RemoveThread extends Thread {
 

@@ -4,7 +4,9 @@ import javax.annotation.Resource;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
 import org.springframework.stereotype.Component;
+
 import TypeWriting.config.Config;
 import TypeWriting.listener.InputDocumentListener;
 
@@ -20,10 +22,19 @@ public class Inputboard extends JTextArea {
 	@Resource(name = "InputDocumentListener")
 	private InputDocumentListener inputDocumentListener;
 
+	public void clear(){
+		getDocument().removeDocumentListener(inputDocumentListener);
+		inputDocumentListener.clear();
+		setText("");
+	}
+	
+	public void display(){
+		getDocument().addDocumentListener(inputDocumentListener);
+	}
+	
 	public void init() {
 		createScrollPane();
 		initStyle();
-		getDocument().addDocumentListener(inputDocumentListener);
 	}
 
 	public void initStyle() {

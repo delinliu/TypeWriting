@@ -35,6 +35,10 @@ public class InputDocumentListener implements DocumentListener {
 	private JTextArea copyOfInputboard = new JTextArea();
 	private Document copiedDoc = copyOfInputboard.getDocument();
 
+	public void clear() {
+		documentMessageManager.clear();
+	}
+
 	@Override
 	public void insertUpdate(DocumentEvent e) {
 		sendMessge(e);
@@ -107,6 +111,8 @@ public class InputDocumentListener implements DocumentListener {
 					i++;
 				}
 			}
+			blackboard.setCaretPosition(Math.min(blackboard.getDocument()
+					.getLength(), o + 1));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

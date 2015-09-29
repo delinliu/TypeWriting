@@ -2,10 +2,14 @@ package TypeWriting.gui.inputing;
 
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+
 import javax.annotation.Resource;
 import javax.swing.JPanel;
+
 import org.springframework.stereotype.Component;
+
 import TypeWriting.config.Config;
+import TypeWriting.entity.Article;
 
 /**
  * 进行打字练习的时候的主内容面板。 负责Blackboard、Inputboard、Hintboard、Displayboard的排版。
@@ -22,6 +26,18 @@ public class ContentPanel extends JPanel implements ComponentListener {
 	private Hintboard hintboard;
 	@Resource(name = "Displayboard")
 	private Displayboard displayboard;
+	
+	public void clear(){
+		hintboard.clear();
+		blackboard.clear();
+		inputboard.clear();
+		displayboard.clear();
+	}
+
+	public void display(Article article){
+		blackboard.display(article);
+		inputboard.display();
+	}
 
 	public void init() {
 

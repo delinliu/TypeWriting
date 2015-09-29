@@ -4,10 +4,12 @@ import javax.annotation.Resource;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
 
 import org.springframework.stereotype.Component;
 
 import TypeWriting.config.Config;
+import TypeWriting.entity.Article;
 import TypeWriting.listener.BlackboardSelectedListener;
 
 /**
@@ -18,14 +20,25 @@ import TypeWriting.listener.BlackboardSelectedListener;
 public class Blackboard extends JTextPane {
 
 	private JScrollPane scrollPane;
-	
+
 	@Resource(name = "BlackboardSelectedListener")
 	BlackboardSelectedListener blackboardSelectedListener;
 
+	public void display(Article article) {
+		try {
+			getDocument().insertString(0, new String(article.getArticleContent()), Config.PlainAttrSet);
+			setCaretPosition(0);
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void clear() {
+		setText("");
+	}
+
 	public void init() {
-		
-		setText("你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错你好不错。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。\r\n你好。");
-		
+
 		createScrollPane();
 		initStyle();
 		addMouseListener(blackboardSelectedListener);

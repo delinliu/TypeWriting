@@ -2,9 +2,7 @@ package TypeWriting.config;
 
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
@@ -14,7 +12,7 @@ public class Config {
 	public final static String FrameTitle = "打字练习";
 	
 	// 主窗口是否全屏
-	public final static boolean FrameFullScreen = false;
+	public final static boolean FrameFullScreen = true;
 	
 	// 主窗口的默认宽高
 	public final static int FrameWidth = 1400;

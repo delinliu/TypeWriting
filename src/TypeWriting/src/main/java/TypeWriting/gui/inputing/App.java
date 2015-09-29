@@ -8,16 +8,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import TypeWriting.config.Config;
+import TypeWriting.entity.Article;
 import TypeWriting.gui.articlelist.ArticleListPanel;
 import TypeWriting.gui.menu.MainMenuBar;
-import TypeWriting.service.impl.TestServiceImpl;
 
 @Service("App")
 public class App {
 	private JFrame frame = new JFrame();
-	
-	@Resource(name = "TestServiceImpl")
-	private TestServiceImpl testServiceImpl;
 
 	@Resource(name = "ContentPanel")
 	private ContentPanel contentPanel;
@@ -29,16 +26,25 @@ public class App {
 	private MainMenuBar mainMenuBar;
 
 	public void switchContent(String name) {
-		if("ArticleListPanel".equals(name)){
+		if (frame.getContentPane() == contentPanel) {
+			contentPanel.clear();
+		}
+		if ("ArticleListPanel".equals(name)) {
+			frame.setTitle(Config.FrameTitle);
 			frame.setContentPane(articleListPanel);
 		}
 		frame.validate();
 	}
 
+	public void displayInputingPanel(Article article) {
+		frame.setTitle(article.getDisplayName());
+		frame.setContentPane(contentPanel);
+		frame.validate();
+		contentPanel.display(article);
+	}
+
 	public void init() {
 
-//		testServiceImpl.testMethod();
-		
 		// 初始化菜单
 		mainMenuBar.init();
 		frame.setJMenuBar(mainMenuBar);
@@ -50,11 +56,12 @@ public class App {
 		articleListPanel.init();
 
 		frame.setContentPane(articleListPanel);
-//		frame.setContentPane(contentPanel);
+		// frame.setContentPane(contentPanel);
 
 		// 初始化主窗口
 		frame.setTitle(Config.FrameTitle);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(Config.FrameWidth, Config.FrameHeight);
 		if (Config.FrameFullScreen) {
 			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		} else {

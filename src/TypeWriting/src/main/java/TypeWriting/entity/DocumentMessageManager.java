@@ -39,6 +39,14 @@ public class DocumentMessageManager {
 		// 启动线程，开始工作
 		messageHandler.start();
 	}
+	
+	public void clear(){
+		synchronized (messageQueueLock) {
+			sendSequence = 0;
+			sequence = 0;
+			messageQueue.clear();
+		}
+	}
 
 	/**
 	 * 接收到一个信息，把它加到队列中，唤醒工作线程

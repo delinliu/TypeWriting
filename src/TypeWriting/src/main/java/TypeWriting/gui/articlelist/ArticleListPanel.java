@@ -33,7 +33,7 @@ public class ArticleListPanel extends JPanel implements ComponentListener {
 		int paddingBottom = 20;
 		int paddingLeft = 30;
 		int articleListBoardWidth = 400;
-		int width = this.getWidth();
+		// int width = this.getWidth();
 		int height = this.getHeight();
 
 		articleListBoard.getScrollPane().setLocation(paddingLeft, paddingTop);
