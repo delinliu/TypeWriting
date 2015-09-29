@@ -25,7 +25,7 @@ public class Displayboard extends JPanel {
 	// 用于记录需要移除的Word的变量，以及保护它的锁
 	private Object removeLock = new Object();
 	private WordPanel needToRemove = null;
-	
+
 	// 记录设置需要移除的Word时的系统时间
 	private long removeTime = 0;
 
@@ -39,12 +39,12 @@ public class Displayboard extends JPanel {
 		public void run() {
 			while (true) {
 				try {
-					
+
 					// 每隔一定时间才执行，减小系统消耗
 					Thread.sleep(Config.DisplayBoardRemoveTime);
-					
+
 					synchronized (removeLock) {
-						
+
 						// 如果超过了阈值，那么就移除掉需要移除的Word
 						if (needToRemove != null
 								&& System.currentTimeMillis() - removeTime > Config.DisplayBoardRemoveCeil) {
@@ -177,7 +177,7 @@ public class Displayboard extends JPanel {
 				needToRemove = null;
 			}
 		}
-		repaint();
+		showWords();
 	}
 
 	/**

@@ -140,10 +140,6 @@ public class DocumentMessageManager {
 							if (sequence < messageQueue.size()) {
 								message = messageQueue.get(sequence);
 
-								if (message.getText().equals("0")) {
-									System.out.println("S");
-								}
-
 								// 如果是删除操作，那么OK，可以发送信息了
 								if ("REMOVE".equals(message.getType())) {
 									isOK = true;

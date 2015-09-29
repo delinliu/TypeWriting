@@ -69,7 +69,7 @@ public class Config {
 	public final static long DisplayBoardRemoveTime = 50;
 	
 	// DisplayBoard中Remove线程执行删除操作的阈值
-	public final static long DisplayBoardRemoveCeil = 100;
+	public final static long DisplayBoardRemoveCeil = 200;
 
 	// Blackboard中正确、错误、普通，三种样式
 	public final static SimpleAttributeSet FineAttrSet;
