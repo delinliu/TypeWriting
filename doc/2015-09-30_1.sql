@@ -1,3 +1,5 @@
+create database typewriting;
+use typewriting;
 
 drop table if exists article;
 create table article(
