@@ -68,8 +68,8 @@ public class ArticleManagerListBoard extends JList implements
 					article.setUpdatetime((Date) map.get("updatetime"));
 					article.setArticleId((long) map.get("articleId"));
 					article.setArticleTitle((String) map.get("articleTitle"));
-					article.setArticleContent((byte[]) map
-							.get("articleContent"));
+					article.setArticleContentString((String) map
+							.get("articleContentString"));
 					article.setLessonSequence(seq++);
 					articles.add(article);
 				}

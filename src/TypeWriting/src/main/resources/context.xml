@@ -16,7 +16,7 @@
         http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
 	<!-- 加载数据库配置参数 -->
-	<context:property-placeholder location="classpath:jdbc.properties" />
+	<context:property-placeholder location="/resources/jdbc.properties" />
 
 	<!-- 创建数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">

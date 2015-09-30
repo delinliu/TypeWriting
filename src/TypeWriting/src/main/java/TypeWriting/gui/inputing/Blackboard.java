@@ -50,7 +50,7 @@ public class Blackboard extends JTextPane {
 
 	public void display(Article article) {
 		try {
-			String text = formatText(new String(article.getArticleContent()));
+			String text = formatText(article.getArticleContentString());
 			getDocument().insertString(0, text, Config.PlainAttrSet);
 			setCaretPosition(0);
 		} catch (BadLocationException e) {

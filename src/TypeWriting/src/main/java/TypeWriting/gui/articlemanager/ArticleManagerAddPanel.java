@@ -67,7 +67,7 @@ public class ArticleManagerAddPanel extends JPanel implements
 				resultHintBoard.display("操作中...", 0);
 				Article article = new Article();
 				article.setArticleTitle(editTitleBoard.getText());
-				article.setArticleContent(editContentBoard.getText().getBytes());
+				article.setArticleContentString(editContentBoard.getText());
 				articleService.addArticle(article);
 				resultHintBoard.display("新增文章成功！", 1);
 				editTitleBoard.display(null);

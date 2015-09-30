@@ -23,7 +23,7 @@ public class EditContentBoard extends JTextArea {
 
 	public void display(Article article) {
 		if (article != null) {
-			setText(new String(article.getArticleContent()));
+			setText(article.getArticleContentString());
 		} else {
 			setText("");
 		}

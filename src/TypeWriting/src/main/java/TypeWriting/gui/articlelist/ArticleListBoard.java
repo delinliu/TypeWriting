@@ -31,10 +31,10 @@ public class ArticleListBoard extends JList implements ListSelectionListener {
 
 	@Resource(name = "ArticleServiceImpl")
 	private ArticleServiceImpl articleService;
-	
+
 	@Resource(name = "App")
 	private App app;
-	
+
 	private List<Article> articles = null;
 
 	@SuppressWarnings("unchecked")
@@ -52,8 +52,8 @@ public class ArticleListBoard extends JList implements ListSelectionListener {
 					article.setUpdatetime((Date) map.get("updatetime"));
 					article.setArticleId((long) map.get("articleId"));
 					article.setArticleTitle((String) map.get("articleTitle"));
-					article.setArticleContent((byte[]) map
-							.get("articleContent"));
+					article.setArticleContentString((String) map
+							.get("articleContentString"));
 					article.setLessonSequence(seq++);
 					articles.add(article);
 				}
@@ -63,8 +63,8 @@ public class ArticleListBoard extends JList implements ListSelectionListener {
 			e.printStackTrace();
 		}
 	}
-	
-	public void display(){
+
+	public void display() {
 		initContent();
 	}
 
@@ -81,7 +81,7 @@ public class ArticleListBoard extends JList implements ListSelectionListener {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					int seq = getSelectedIndex();
-					if(seq >= 0 && articles != null && articles.size() > seq){
+					if (seq >= 0 && articles != null && articles.size() > seq) {
 						app.displayInputingPanel(articles.get(seq));
 					}
 				}

@@ -10,6 +10,8 @@ public class Article {
 	private Date addtime;
 	private Date updatetime;
 	private String status;
+	
+	private String articleContentString;
 
 	private int lessonSequence;
 
@@ -67,6 +69,14 @@ public class Article {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getArticleContentString() {
+		return articleContentString;
+	}
+
+	public void setArticleContentString(String articleContentString) {
+		this.articleContentString = articleContentString;
 	}
 
 	@Override

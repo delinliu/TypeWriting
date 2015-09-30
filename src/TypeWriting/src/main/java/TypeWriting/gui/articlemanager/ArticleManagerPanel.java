@@ -172,12 +172,12 @@ public class ArticleManagerPanel extends JPanel implements ComponentListener,
 				Article newArticle = new Article();
 				newArticle.setArticleId(article.getArticleId());
 				newArticle.setArticleTitle(editTitleBoard.getText());
-				newArticle.setArticleContent(editContentBoard.getText()
-						.getBytes());
+				newArticle.setArticleContentString(editContentBoard.getText());
 				articleService.updateArticle(newArticle);
 				resultHintBoard.display("更新文章成功！", 1);
 				article.setArticleTitle(newArticle.getArticleTitle());
-				article.setArticleContent(newArticle.getArticleContent());
+				article.setArticleContentString(newArticle
+						.getArticleContentString());
 				articleManagerListBoard.refreshContent();
 			} catch (_Exception e1) {
 				// e1.printStackTrace();
