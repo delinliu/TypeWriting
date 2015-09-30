@@ -24,9 +24,34 @@ public class Blackboard extends JTextPane {
 	@Resource(name = "BlackboardSelectedListener")
 	BlackboardSelectedListener blackboardSelectedListener;
 
+	private String formatText(String text) {
+		text.replaceAll("\r\n", "\n");
+		text.replaceAll("\r", "\n");
+		String[] paragraphs = text.split("\n");
+		StringBuilder all = new StringBuilder();
+		for (String paragraph : paragraphs) {
+			paragraph = paragraph.trim();
+			int start = 0;
+			while (start < paragraph.length() && paragraph.charAt(start) == '　') {
+				start++;
+			}
+			paragraph = paragraph.substring(start);
+
+			int end = paragraph.length() - 1;
+			while (end >= 0 && paragraph.charAt(end) == '　') {
+				end--;
+			}
+			paragraph = paragraph.substring(0, end + 1);
+
+			all.append("    " + paragraph + "\n");
+		}
+		return all.toString();
+	}
+
 	public void display(Article article) {
 		try {
-			getDocument().insertString(0, new String(article.getArticleContent()), Config.PlainAttrSet);
+			String text = formatText(new String(article.getArticleContent()));
+			getDocument().insertString(0, text, Config.PlainAttrSet);
 			setCaretPosition(0);
 		} catch (BadLocationException e) {
 			e.printStackTrace();

@@ -43,6 +43,7 @@ public class ArticleManagerAddPanel extends JPanel implements
 		add(editTitleBoard);
 		add(addButton);
 		add(resultHintBoard);
+		resized();
 	}
 
 	public void init() {
@@ -80,9 +81,8 @@ public class ArticleManagerAddPanel extends JPanel implements
 			}
 		}
 	}
-
-	@Override
-	public void componentResized(ComponentEvent e) {
+	
+	public void resized(){
 		int paddingTop = 10;
 		int paddingBottom = 20;
 		int paddingRight = 30;
@@ -119,6 +119,11 @@ public class ArticleManagerAddPanel extends JPanel implements
 				height - paddingBottom - buttonHeight);
 		resultHintBoard.setSize(leftBoardWidth - buttonWidth - buttonGap,
 				buttonHeight);
+	}
+
+	@Override
+	public void componentResized(ComponentEvent e) {
+		resized();
 	}
 
 	@Override

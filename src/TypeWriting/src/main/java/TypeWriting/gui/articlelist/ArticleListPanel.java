@@ -18,6 +18,7 @@ public class ArticleListPanel extends JPanel implements ComponentListener {
 
 	public void display() {
 		articleListBoard.display();
+		repaint();
 	}
 	
 	public void init() {

@@ -62,6 +62,7 @@ public class ArticleManagerPanel extends JPanel implements ComponentListener,
 		editButton.display();
 		deleteButton.display();
 		resultHintBoard.clear();
+		resized();
 	}
 
 	public void init() {
@@ -76,9 +77,7 @@ public class ArticleManagerPanel extends JPanel implements ComponentListener,
 		deleteButton.addActionListener(this);
 	}
 
-	@Override
-	public void componentResized(ComponentEvent e) {
-
+	public void resized() {
 		int paddingTop = 10;
 		int paddingBottom = 20;
 		int paddingRight = 30;
@@ -127,6 +126,12 @@ public class ArticleManagerPanel extends JPanel implements ComponentListener,
 				* 2, height - paddingBottom - buttonHeight);
 		resultHintBoard.setSize(leftBoardWidth - buttonWidth * 2 - buttonGap
 				* 2, buttonHeight);
+	}
+
+	@Override
+	public void componentResized(ComponentEvent e) {
+
+		resized();
 	}
 
 	@Override
