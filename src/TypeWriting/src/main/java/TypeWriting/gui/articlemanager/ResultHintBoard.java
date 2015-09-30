@@ -19,13 +19,16 @@ public class ResultHintBoard extends JTextPane {
 		try {
 			switch (mode) {
 			case 0:
-				getStyledDocument().insertString(0, msg, Config.PlainAttrSet);
+				getStyledDocument().insertString(0, msg,
+						Config.ManagerPlainAttrSet);
 				break;
 			case 1:
-				getStyledDocument().insertString(0, msg, Config.FineAttrSet);
+				getStyledDocument().insertString(0, msg,
+						Config.ManagerFineAttrSet);
 				break;
 			case 2:
-				getStyledDocument().insertString(0, msg, Config.FailAttrSet);
+				getStyledDocument().insertString(0, msg,
+						Config.ManagerFailAttrSet);
 				break;
 			}
 		} catch (Exception e) {

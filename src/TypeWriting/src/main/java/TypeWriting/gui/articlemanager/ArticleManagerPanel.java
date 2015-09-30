@@ -53,6 +53,7 @@ public class ArticleManagerPanel extends JPanel implements ComponentListener,
 		add(deleteButton);
 		add(editButton);
 		add(resultHintBoard);
+		resized();
 	}
 
 	public void displayArticle(Article article) {
@@ -62,7 +63,6 @@ public class ArticleManagerPanel extends JPanel implements ComponentListener,
 		editButton.display();
 		deleteButton.display();
 		resultHintBoard.clear();
-		resized();
 	}
 
 	public void init() {
