@@ -13,4 +13,6 @@ public interface ArticleService {
 	public void updateArticle(Article article) throws _Exception;
 
 	public void deleteArticle(Article article) throws _Exception;
+
+	public void addArticle(Article article) throws _Exception;
 }

@@ -23,27 +23,36 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleMapper.findArticleList();
 	}
 
-	@Override
-	public void updateArticle(Article article) throws _Exception {
-		if (article == null || article.getArticleId() < 1) {
-			throw new _Exception("保存文章失败！");
-		}
+	int TITLE_MAX_LENGTH = 100;
+	int CONTENT_MAX_LENGTH = 10000;
 
-		int TITLE_MAX_LENGTH = 100;
+	private void checkTitle(Article article) throws _Exception {
 		if (article.getArticleTitle() == null
 				|| article.getArticleTitle().length() < 1) {
 			throw new _Exception("请输入文章标题！");
 		} else if (article.getArticleTitle().length() > TITLE_MAX_LENGTH) {
 			throw new _Exception("文章标题最多为" + TITLE_MAX_LENGTH + "个字！");
 		}
+	}
 
-		int CONTENT_MAX_LENGTH = 10000;
+	private void checkContent(Article article) throws _Exception {
 		if (article.getArticleContent() == null
 				|| article.getArticleContent().length < 1) {
 			throw new _Exception("请输入文章内容！");
 		} else if (new String(article.getArticleContent()).length() > CONTENT_MAX_LENGTH) {
 			throw new _Exception("文章内容最多为" + CONTENT_MAX_LENGTH + "个字！");
 		}
+	}
+
+	@Override
+	public void updateArticle(Article article) throws _Exception {
+		if (article == null || article.getArticleId() < 1) {
+			throw new _Exception("保存文章失败！");
+		}
+
+		checkTitle(article);
+
+		checkContent(article);
 
 		Integer row = articleMapper.updateArticle(article);
 
@@ -57,11 +66,25 @@ public class ArticleServiceImpl implements ArticleService {
 		if (article == null || article.getArticleId() < 1) {
 			throw new _Exception("删除文章失败！");
 		}
-		
+
 		Integer row = articleMapper.deleteArticle(article);
 
 		if (row == null || row != 1) {
 			throw new _Exception("删除文章失败！");
+		}
+	}
+
+	@Override
+	public void addArticle(Article article) throws _Exception {
+
+		checkTitle(article);
+
+		checkContent(article);
+
+		Integer row = articleMapper.addArticle(article);
+
+		if (row == null || row != 1) {
+			throw new _Exception("新增文章失败！");
 		}
 	}
 }

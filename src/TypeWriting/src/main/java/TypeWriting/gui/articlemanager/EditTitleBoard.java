@@ -21,7 +21,11 @@ public class EditTitleBoard extends JTextField {
 	}
 
 	public void display(Article article) {
-		setText(article.getArticleTitle());
+		if (article != null) {
+			setText(article.getArticleTitle());
+		} else {
+			setText("");
+		}
 		setEditable(true);
 		setVisible(true);
 	}

@@ -47,6 +47,12 @@ public class ArticleManagerPanel extends JPanel implements ComponentListener,
 		editButton.clear();
 		deleteButton.clear();
 		resultHintBoard.clear();
+		add(articleManagerListBoard.getScrollPane());
+		add(editContentBoard.getScrollPane());
+		add(editTitleBoard);
+		add(deleteButton);
+		add(editButton);
+		add(resultHintBoard);
 	}
 
 	public void displayArticle(Article article) {
@@ -61,22 +67,10 @@ public class ArticleManagerPanel extends JPanel implements ComponentListener,
 	public void init() {
 		setBackground(Color.WHITE);
 		setLayout(null);
-
 		articleManagerListBoard.init();
-		add(articleManagerListBoard.getScrollPane());
-
 		editContentBoard.init();
-		add(editContentBoard.getScrollPane());
-
 		editTitleBoard.init();
-		add(editTitleBoard);
-
-		add(editButton);
-		add(deleteButton);
-
 		resultHintBoard.init();
-		add(resultHintBoard);
-
 		addComponentListener(this);
 		editButton.addActionListener(this);
 		deleteButton.addActionListener(this);
@@ -155,6 +149,7 @@ public class ArticleManagerPanel extends JPanel implements ComponentListener,
 		}
 		if (e.getSource() == deleteButton) {
 			try {
+				resultHintBoard.display("操作中...", 0);
 				articleService.deleteArticle(article);
 				resultHintBoard.display("删除文章成功！", 1);
 				articleManagerListBoard.removeArticle(article);
@@ -168,6 +163,7 @@ public class ArticleManagerPanel extends JPanel implements ComponentListener,
 			}
 		} else if (e.getSource() == editButton) {
 			try {
+				resultHintBoard.display("操作中...", 0);
 				Article newArticle = new Article();
 				newArticle.setArticleId(article.getArticleId());
 				newArticle.setArticleTitle(editTitleBoard.getText());

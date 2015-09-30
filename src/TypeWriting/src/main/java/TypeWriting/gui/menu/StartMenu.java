@@ -22,6 +22,8 @@ public class StartMenu extends JMenu implements ActionListener {
 			Config.MenuStartItem1);
 	private StyleMenuItem linkManageArticle = new StyleMenuItem(
 			Config.MenuStartItem2);
+	private StyleMenuItem linkAddArticle = new StyleMenuItem(
+			Config.MenuStartItem3);
 
 	@Resource(name = "App")
 	private App app;
@@ -38,9 +40,11 @@ public class StartMenu extends JMenu implements ActionListener {
 		// 添加子项
 		add(linkIndexPage);
 		add(linkManageArticle);
+		add(linkAddArticle);
 
 		linkIndexPage.addActionListener(this);
 		linkManageArticle.addActionListener(this);
+		linkAddArticle.addActionListener(this);
 	}
 
 	@Override
@@ -49,6 +53,8 @@ public class StartMenu extends JMenu implements ActionListener {
 			app.switchContent("ArticleListPanel");
 		} else if (e.getSource() == linkManageArticle) {
 			app.switchContent("ArticleManagerPanel");
+		} else if (e.getSource() == linkAddArticle) {
+			app.switchContent("ArticleManagerAddPanel");
 		}
 	}
 }

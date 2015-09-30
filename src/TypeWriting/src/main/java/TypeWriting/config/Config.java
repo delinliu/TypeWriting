@@ -78,6 +78,7 @@ public class Config {
 	public final static String MenuStartTitle = "开始";
 	public final static String MenuStartItem1 = "选择文章";
 	public final static String MenuStartItem2 = "管理文章";
+	public final static String MenuStartItem3 = "添加文章";
 	
 	// Blackboard中正确、错误、普通，三种样式
 	public final static SimpleAttributeSet FineAttrSet;

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import TypeWriting.config.Config;
 import TypeWriting.entity.Article;
 import TypeWriting.gui.articlelist.ArticleListPanel;
+import TypeWriting.gui.articlemanager.ArticleManagerAddPanel;
 import TypeWriting.gui.articlemanager.ArticleManagerPanel;
 import TypeWriting.gui.menu.MainMenuBar;
 
@@ -26,6 +27,9 @@ public class App {
 	@Resource(name = "ArticleManagerPanel")
 	private ArticleManagerPanel articleManagerPanel;
 
+	@Resource(name = "ArticleManagerAddPanel")
+	private ArticleManagerAddPanel articleManagerAddPanel;
+
 	@Resource(name = "MainMenuBar")
 	private MainMenuBar mainMenuBar;
 
@@ -41,6 +45,10 @@ public class App {
 			frame.setTitle("管理文章");
 			frame.setContentPane(articleManagerPanel);
 			articleManagerPanel.display();
+		} else if ("ArticleManagerAddPanel".equals(name)) {
+			frame.setTitle("新增文章");
+			frame.setContentPane(articleManagerAddPanel);
+			articleManagerAddPanel.display();
 		}
 		frame.validate();
 	}
@@ -67,9 +75,12 @@ public class App {
 		// 初始化文章管理面板
 		articleManagerPanel.init();
 
-		// frame.setContentPane(articleListPanel);
+		// 初始化新增文章面板
+		articleManagerAddPanel.init();
+
+		frame.setContentPane(articleListPanel);
 		// frame.setContentPane(contentPanel);
-		frame.setContentPane(articleManagerPanel);
+		// frame.setContentPane(articleManagerPanel);
 
 		// 初始化主窗口
 		frame.setTitle(Config.FrameTitle);

@@ -13,4 +13,6 @@ public interface ArticleMapper {
 
 	public Integer deleteArticle(Article article);
 
+	public Integer addArticle(Article article);
+
 }

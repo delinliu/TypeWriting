@@ -22,7 +22,11 @@ public class EditContentBoard extends JTextArea {
 	}
 
 	public void display(Article article) {
-		setText(new String(article.getArticleContent()));
+		if (article != null) {
+			setText(new String(article.getArticleContent()));
+		} else {
+			setText("");
+		}
 		setEditable(true);
 		scrollPane.setVisible(true);
 	}

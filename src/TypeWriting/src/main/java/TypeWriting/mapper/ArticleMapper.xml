@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="TypeWriting.mapper.ArticleMapper" >
+<mapper namespace="TypeWriting.mapper.ArticleMapper">
 	<select id="findArticleList" resultType="map">
-		select * from article 
+		select * from article
 		where status="normal"
 		order by articleId asc
 	</select>
-	
+
 	<update id="updateArticle" parameterType="TypeWriting.entity.Article">
-		update article set articleTitle=#{articleTitle}, 
-			articleContent=#{articleContent},
-			updatetime=now()
+		update article set
+		articleTitle=#{articleTitle},
+		articleContent=#{articleContent},
+		updatetime=now()
 		where articleId=#{articleId}
 	</update>
-	
+
 	<update id="deleteArticle" parameterType="TypeWriting.entity.Article">
-		update article set status="deleted", 
-			updatetime=now()
+		update article set
+		status="deleted",
+		updatetime=now()
 		where articleId=#{articleId}
 	</update>
+
+	<insert id="addArticle" parameterType="TypeWriting.entity.Article">
+		insert into
+		article(articleTitle, articleContent)
+		values(#{articleTitle},
+		#{articleContent})
+	</insert>
 </mapper>
