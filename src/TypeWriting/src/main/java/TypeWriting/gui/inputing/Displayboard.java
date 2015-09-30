@@ -3,10 +3,14 @@ package TypeWriting.gui.inputing;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+
 import org.springframework.stereotype.Component;
+
 import TypeWriting.config.Config;
 import TypeWriting.entity.WordPanel;
 
@@ -32,8 +36,8 @@ public class Displayboard extends JPanel {
 	public Displayboard() {
 		new RemoveThread().start();
 	}
-	
-	public void clear(){
+
+	public void clear() {
 		synchronized (removeLock) {
 			needToRemove = null;
 			wordQueue.clear();
@@ -82,6 +86,11 @@ public class Displayboard extends JPanel {
 		}
 
 		showWords();
+
+		if (wordQueue.get(wordQueue.size() - 1).getOffset() == offset) {
+			JScrollBar bar = scrollPane.getVerticalScrollBar();
+			bar.setValue(bar.getMaximum());
+		}
 	}
 
 	/**
