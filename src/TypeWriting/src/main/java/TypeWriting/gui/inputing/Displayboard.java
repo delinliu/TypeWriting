@@ -87,7 +87,8 @@ public class Displayboard extends JPanel {
 
 		showWords();
 
-		if (wordQueue.get(wordQueue.size() - 1).getOffset() == offset) {
+		if (wordQueue.size() > 0
+				&& wordQueue.get(wordQueue.size() - 1).getOffset() == offset) {
 			JScrollBar bar = scrollPane.getVerticalScrollBar();
 			bar.setValue(bar.getMaximum());
 		}

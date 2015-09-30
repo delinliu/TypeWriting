@@ -39,8 +39,8 @@ public class DocumentMessageManager {
 		// 启动线程，开始工作
 		messageHandler.start();
 	}
-	
-	public void clear(){
+
+	public void clear() {
 		synchronized (messageQueueLock) {
 			sendSequence = 0;
 			sequence = 0;
@@ -92,22 +92,52 @@ public class DocumentMessageManager {
 			long time = 0;
 			long end = messageQueue.get(max).getTimestamp();
 			long start = end;
-			for (int i = min - 1; i >= 0;) {
+			int left = -1;
+			int length = -1;
+			for (int i = min - 1; i >= 0; i--) {
 				DocumentMessage pre = messageQueue.get(i);
 
-				// 如果pre为REMOVE、prepre为INSERT，而且它们删除和新增的内容一模一样，那么就忽略它们
-				if ("REMOVE".equals(pre.getType()) && i > 0) {
-					DocumentMessage prepre = messageQueue.get(i - 1);
-					if ("INSERT".equals(prepre.getType())
-							&& pre.getOffset() == prepre.getOffset()
-							&& pre.getLength() == prepre.getLength()) {
-						start = prepre.getTimestamp();
-						i -= 2;
-						continue;
+				if ("REMOVE".equals(pre.getType())) {
+					if (left == -1) {
+						left = pre.getOffset();
+						length = pre.getLength();
+					} else if (left == pre.getOffset()) {
+						length += pre.getLength();
+					} else if (left + length == pre.getOffset()) {
+						length += pre.getLength();
+					} else {
+						start = pre.getTimestamp();
+						break;
+					}
+				} else if ("INSERT".equals(pre.getType())) {
+					if (left == -1) {
+						start = pre.getTimestamp();
+						break;
+					} else if (left <= pre.getOffset()
+							&& pre.getOffset() + pre.getLength() <= left
+									+ length) {
+						length -= pre.getLength();
+					} else {
+						start = pre.getTimestamp();
+						break;
 					}
 				}
+				
 				start = pre.getTimestamp();
-				break;
+
+				// 如果pre为REMOVE、prepre为INSERT，而且它们删除和新增的内容一模一样，那么就忽略它们
+				// if ("REMOVE".equals(pre.getType()) && i > 0) {
+				// DocumentMessage prepre = messageQueue.get(i - 1);
+				// if ("INSERT".equals(prepre.getType())
+				// && pre.getOffset() == prepre.getOffset()
+				// && pre.getLength() == prepre.getLength()) {
+				// start = prepre.getTimestamp();
+				// i -= 2;
+				// continue;
+				// }
+				// }
+				// start = pre.getTimestamp();
+				// break;
 			}
 			time = end - start;
 
@@ -117,8 +147,8 @@ public class DocumentMessageManager {
 				DocumentMessage msg = messageQueue.get(min);
 
 				if (!type.equals(msg.getType())) { // 这是不可能的，否则逻辑错误
-					System.out.println("ERROR!");
-					System.exit(-1);
+					System.err.println("ERROR!");
+					// System.exit(-1);
 				}
 				text += msg.getText();
 				min++;
