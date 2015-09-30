@@ -88,12 +88,15 @@ public class InputDocumentListener implements DocumentListener {
 			int i = 0;
 
 			StyledDocument doc = blackboard.getStyledDocument();
+			
 			doc.setCharacterAttributes(0, doc.getLength(), Config.PlainAttrSet,
 					false);
 			int oSz = doc.getLength();
 			String originText = doc.getText(0, oSz);
 			int o = 0;
 
+			int start = 0;
+			boolean fine = true;
 			while (o < oSz && i < iSz) {
 				char oC = originText.charAt(o);
 				char iC = inputText.charAt(i);
@@ -102,14 +105,27 @@ public class InputDocumentListener implements DocumentListener {
 				} else if (iC == '\r' || iC == '\n') {
 					i++;
 				} else if (oC == iC) {
-					doc.setCharacterAttributes(o, 1, Config.FineAttrSet, false);
+					if(!fine){
+						doc.setCharacterAttributes(start, o-start, Config.FailAttrSet, false);
+						fine = !fine;
+						start = o;
+					}
 					o++;
 					i++;
 				} else {
-					doc.setCharacterAttributes(o, 1, Config.FailAttrSet, false);
+					if(fine){
+						doc.setCharacterAttributes(start, o-start, Config.FineAttrSet, false);
+						fine = !fine;
+						start = o;
+					}
 					o++;
 					i++;
 				}
+			}
+			if(fine){
+				doc.setCharacterAttributes(start, o-start, Config.FineAttrSet, false);
+			}else{
+				doc.setCharacterAttributes(start, o-start, Config.FailAttrSet, false);
 			}
 			blackboard.setCaretPosition(Math.min(blackboard.getDocument()
 					.getLength(), o + 1));
