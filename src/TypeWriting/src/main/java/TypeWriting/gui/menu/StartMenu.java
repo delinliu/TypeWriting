@@ -16,7 +16,7 @@ import TypeWriting.gui.inputing.App;
  */
 @SuppressWarnings("serial")
 @Component("StartMenu")
-public class StartMenu extends JMenu {
+public class StartMenu extends JMenu implements ActionListener {
 
 	private StyleMenuItem linkIndexPage = new StyleMenuItem(
 			Config.MenuStartItem1);
@@ -39,11 +39,16 @@ public class StartMenu extends JMenu {
 		add(linkIndexPage);
 		add(linkManageArticle);
 
-		linkIndexPage.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				app.switchContent("ArticleListPanel");
-			}
-		});
+		linkIndexPage.addActionListener(this);
+		linkManageArticle.addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == linkIndexPage) {
+			app.switchContent("ArticleListPanel");
+		} else if (e.getSource() == linkManageArticle) {
+			app.switchContent("ArticleManagerPanel");
+		}
 	}
 }

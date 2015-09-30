@@ -9,7 +9,7 @@ import javax.swing.text.StyleConstants;
 public class Config {
 
 	// 主窗口的标题
-	public final static String FrameTitle = "打字练习";
+	public final static String FrameTitle = "选择文章";
 	
 	// 主窗口是否全屏
 	public final static boolean FrameFullScreen = true;
