@@ -54,7 +54,7 @@ public class ArticleListBoard extends JList implements ListSelectionListener {
 					article.setArticleTitle((String) map.get("articleTitle"));
 					article.setArticleContent((byte[]) map
 							.get("articleContent"));
-					article.setDisplayName("第" + seq++ + "课：" + article.getArticleTitle());
+					article.setLessonSequence(seq++);
 					articles.add(article);
 				}
 			}

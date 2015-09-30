@@ -46,7 +46,7 @@ public class App {
 	}
 
 	public void displayInputingPanel(Article article) {
-		frame.setTitle(article.getDisplayName());
+		frame.setTitle(article.toString());
 		frame.setContentPane(contentPanel);
 		frame.validate();
 		contentPanel.display(article);

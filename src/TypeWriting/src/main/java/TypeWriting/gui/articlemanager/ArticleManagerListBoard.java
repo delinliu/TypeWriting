@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import TypeWriting.config.Config;
 import TypeWriting.entity.Article;
+import TypeWriting.entity._Exception;
 import TypeWriting.gui.inputing.App;
 import TypeWriting.service.impl.ArticleServiceImpl;
 
@@ -40,6 +41,19 @@ public class ArticleManagerListBoard extends JList implements
 	private List<Article> articles = null;
 
 	@SuppressWarnings("unchecked")
+	public void refreshContent() {
+		setListData(articles.toArray());
+	}
+
+	public void removeArticle(Article article) {
+		for (int i = article.getLessonSequence(); i < articles.size(); i++) {
+			articles.get(i).setLessonSequence(i);
+		}
+		articles.remove(article);
+		refreshContent();
+	}
+
+	@SuppressWarnings("unchecked")
 	public void initContent() {
 
 		List<Map<String, Object>> maps;
@@ -56,12 +70,13 @@ public class ArticleManagerListBoard extends JList implements
 					article.setArticleTitle((String) map.get("articleTitle"));
 					article.setArticleContent((byte[]) map
 							.get("articleContent"));
-					article.setDisplayName("第" + seq++ + "课："
-							+ article.getArticleTitle());
+					article.setLessonSequence(seq++);
 					articles.add(article);
 				}
 			}
 			setListData(articles.toArray());
+		} catch (_Exception e) {
+			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

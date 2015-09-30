@@ -11,14 +11,14 @@ public class Article {
 	private Date updatetime;
 	private String status;
 
-	private String displayName;
+	private int lessonSequence;
 
-	public String getDisplayName() {
-		return displayName;
+	public int getLessonSequence() {
+		return lessonSequence;
 	}
 
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
+	public void setLessonSequence(int lessonSequence) {
+		this.lessonSequence = lessonSequence;
 	}
 
 	public long getArticleId() {
@@ -71,6 +71,6 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return displayName;
+		return "第" + lessonSequence + "课：" + articleTitle;
 	}
 }
