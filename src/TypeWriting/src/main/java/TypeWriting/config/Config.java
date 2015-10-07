@@ -89,6 +89,11 @@ public class Config {
 	public final static SimpleAttributeSet ManagerFailAttrSet;
 	public final static SimpleAttributeSet ManagerPlainAttrSet;
 
+	public final static SimpleAttributeSet RecordAttrSet1;
+	public final static SimpleAttributeSet RecordAttrSet2;
+	public final static SimpleAttributeSet RecordAttrSet3;
+	public final static SimpleAttributeSet RecordAttrSet4;
+
 	static {
 		FineAttrSet = new SimpleAttributeSet();
 		StyleConstants.setForeground(FineAttrSet, new Color(0, 240, 0));
@@ -102,7 +107,18 @@ public class Config {
 		StyleConstants.setForeground(ManagerFailAttrSet, new Color(150, 0, 0));
 		ManagerPlainAttrSet = new SimpleAttributeSet();
 		StyleConstants.setForeground(ManagerPlainAttrSet, new Color(10, 10, 10));
+		
+		RecordAttrSet1 = new SimpleAttributeSet();
+		StyleConstants.setForeground(RecordAttrSet1, new Color(10, 10, 10));
+		RecordAttrSet2 = new SimpleAttributeSet();
+		StyleConstants.setForeground(RecordAttrSet2, new Color(0xff6600));
+		RecordAttrSet3 = new SimpleAttributeSet();
+		StyleConstants.setForeground(RecordAttrSet3, new Color(0x337ab7));
+		RecordAttrSet4 = new SimpleAttributeSet();
+		StyleConstants.setForeground(RecordAttrSet4, new Color(10, 10, 10));
 	}
+	
+	
 
 	static {
 		try {

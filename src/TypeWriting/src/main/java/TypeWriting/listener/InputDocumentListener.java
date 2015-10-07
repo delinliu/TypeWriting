@@ -13,7 +13,9 @@ import org.springframework.stereotype.Component;
 import TypeWriting.config.Config;
 import TypeWriting.entity.DocumentMessage;
 import TypeWriting.entity.DocumentMessageManager;
+import TypeWriting.entity.RecordUpdateManager;
 import TypeWriting.gui.inputing.Blackboard;
+import TypeWriting.gui.inputing.ContentPanel;
 import TypeWriting.gui.inputing.Inputboard;
 
 /**
@@ -28,12 +30,19 @@ public class InputDocumentListener implements DocumentListener {
 	private Inputboard inputboard;
 	@Resource(name = "DocumentMessageManager")
 	private DocumentMessageManager documentMessageManager;
+	@Resource(name = "ContentPanel")
+	private ContentPanel contentPanel;
+	@Resource(name = "RecordUpdateManager")
+	private RecordUpdateManager recordUpdateManager;
 
 	// 一个JTextArea副本，用于模拟Inputboard。
 	// 因为文字删除事件是在文字已经被删除后才触发的，所以光凭Inputboard是无法获取被删除的文本的。
 	// 用一个副本则可以在获取被删除的文本后再模拟删除操作。
 	private JTextArea copyOfInputboard = new JTextArea();
 	private Document copiedDoc = copyOfInputboard.getDocument();
+
+	private int finish;
+	private int ratio;
 
 	public void clear() {
 		documentMessageManager.clear();
@@ -43,16 +52,25 @@ public class InputDocumentListener implements DocumentListener {
 	public void insertUpdate(DocumentEvent e) {
 		sendMessge(e);
 		match();
+		updateRecord();
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e) {
 		sendMessge(e);
 		match();
+		updateRecord();
 	}
 
 	@Override
 	public void changedUpdate(DocumentEvent e) {
+	}
+
+	private void updateRecord() {
+		int recordId = contentPanel.getRecordId();
+		int time = (int) (System.currentTimeMillis() - contentPanel
+				.getStartTime());
+		recordUpdateManager.addRecord(recordId, time, finish, ratio);
 	}
 
 	/**
@@ -82,6 +100,13 @@ public class InputDocumentListener implements DocumentListener {
 	 * 把Inputboard中的文本与Blackboard中的文本进行逐字比对，在Blackboard中把匹配上的文字标记为绿色，错误的标记为红色，】。
 	 */
 	private void match() {
+
+		finish = 0;
+		ratio = 0;
+
+		int right = 0;
+		int wrong = 0;
+
 		try {
 			String inputText = inputboard.getText();
 			int iSz = inputText.length();
@@ -123,6 +148,8 @@ public class InputDocumentListener implements DocumentListener {
 					i++;
 					oLine = false;
 					iLine = false;
+
+					right++;
 				} else {
 					if (fine) {
 						doc.setCharacterAttributes(start, o - start,
@@ -134,6 +161,8 @@ public class InputDocumentListener implements DocumentListener {
 					i++;
 					oLine = false;
 					iLine = false;
+
+					wrong++;
 				}
 			}
 			if (fine) {
@@ -145,6 +174,11 @@ public class InputDocumentListener implements DocumentListener {
 			}
 			blackboard.setCaretPosition(Math.min(blackboard.getDocument()
 					.getLength(), o + 1));
+
+			finish = (100 * (o + 1) / oSz);
+			if (right + wrong > 0) {
+				ratio = (right * 100) / (right + wrong);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

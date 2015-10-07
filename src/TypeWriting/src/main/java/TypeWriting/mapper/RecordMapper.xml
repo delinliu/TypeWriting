@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="TypeWriting.mapper.RecordMapper">
+	<insert id="addRecord" useGeneratedKeys="true" keyProperty="recordId">
+		insert into record(articleId)
+		values(#{articleId})
+	</insert>
+
+	<update id="updateRecord">
+		update record
+		set time=#{time},
+		finish=#{finish},
+		ratio=#{ratio},
+		updatetime=now()
+		where recordId=#{recordId}
+	</update>
+
+	<select id="findRecord" resultType="map">
+		select * from record
+		where
+		articleId=#{articleId}
+		and finish!=0
+		order by addtime asc
+	</select>
+</mapper>

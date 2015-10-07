@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import TypeWriting.config.Config;
 import TypeWriting.entity.Article;
+import TypeWriting.service.RecordService;
 
 /**
  * 进行打字练习的时候的主内容面板。 负责Blackboard、Inputboard、Hintboard、Displayboard的排版。
@@ -27,6 +28,12 @@ public class ContentPanel extends JPanel implements ComponentListener {
 	@Resource(name = "Displayboard")
 	private Displayboard displayboard;
 	
+	@Resource(name = "RecordServiceImpl")
+	private RecordService recordService;
+	
+	private int recordId = 0;
+	private long startTime = 0;
+	
 	public void clear(){
 		hintboard.clear();
 		blackboard.clear();
@@ -37,6 +44,14 @@ public class ContentPanel extends JPanel implements ComponentListener {
 	public void display(Article article){
 		blackboard.display(article);
 		inputboard.display();
+		
+		try {
+			startTime = System.currentTimeMillis();
+			recordId = 0;
+			recordId = recordService.addRecord((int)article.getArticleId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void init() {
@@ -116,5 +131,13 @@ public class ContentPanel extends JPanel implements ComponentListener {
 
 	@Override
 	public void componentHidden(ComponentEvent e) {
+	}
+
+	public int getRecordId() {
+		return recordId;
+	}
+
+	public long getStartTime() {
+		return startTime;
 	}
 }

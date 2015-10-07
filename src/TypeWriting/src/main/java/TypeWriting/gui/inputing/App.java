@@ -78,7 +78,8 @@ public class App {
 		// 初始化新增文章面板
 		articleManagerAddPanel.init();
 
-		frame.setContentPane(articleListPanel);
+		switchContent("ArticleListPanel");
+		// frame.setContentPane(articleListPanel);
 		// frame.setContentPane(contentPanel);
 		// frame.setContentPane(articleManagerPanel);
 

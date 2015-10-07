@@ -20,7 +20,9 @@ import org.springframework.stereotype.Component;
 
 import TypeWriting.config.Config;
 import TypeWriting.entity.Article;
+import TypeWriting.entity._Exception;
 import TypeWriting.gui.inputing.App;
+import TypeWriting.service.RecordService;
 import TypeWriting.service.impl.ArticleServiceImpl;
 
 @SuppressWarnings({ "serial", "rawtypes" })
@@ -31,6 +33,12 @@ public class ArticleListBoard extends JList implements ListSelectionListener {
 
 	@Resource(name = "ArticleServiceImpl")
 	private ArticleServiceImpl articleService;
+
+	@Resource(name = "RecordServiceImpl")
+	private RecordService recordService;
+	
+	@Resource(name = "RecordBoard")
+	private RecordBoard recordBoard;
 
 	@Resource(name = "App")
 	private App app;
@@ -114,5 +122,16 @@ public class ArticleListBoard extends JList implements ListSelectionListener {
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
+		int seq = getSelectedIndex();
+		if (seq >= 0 && articles != null && articles.size() > seq) {
+			try {
+				Article article = articles.get(seq);
+				List<Map<String, Object>> records = recordService
+						.findRecords(article.getArticleId());
+				recordBoard.display(article, records);
+			} catch (_Exception e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 }
