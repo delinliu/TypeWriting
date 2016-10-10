@@ -1,7 +1,6 @@
 package TypeWriting.gui.articlemanager;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,8 +23,7 @@ import TypeWriting.service.impl.ArticleServiceImpl;
 
 @SuppressWarnings({ "serial", "rawtypes" })
 @Component("ArticleManagerListBoard")
-public class ArticleManagerListBoard extends JList implements
-		ListSelectionListener {
+public class ArticleManagerListBoard extends JList implements ListSelectionListener {
 
 	private JScrollPane scrollPane = new JScrollPane(this);
 
@@ -68,8 +66,7 @@ public class ArticleManagerListBoard extends JList implements
 					article.setUpdatetime((Date) map.get("updatetime"));
 					article.setArticleId((long) map.get("articleId"));
 					article.setArticleTitle((String) map.get("articleTitle"));
-					article.setArticleContentString((String) map
-							.get("articleContentString"));
+					article.setArticleContentString((String) map.get("articleContentString"));
 					article.setLessonSequence(seq++);
 					articles.add(article);
 				}
@@ -88,7 +85,7 @@ public class ArticleManagerListBoard extends JList implements
 
 	public void init() {
 		setBackground(Color.WHITE);
-		setFont(new Font("幼圆", Font.PLAIN, 15));
+		setFont(Config.ArticleListFont);
 		setBorder(null);
 		createScrollPane();
 		initContent();
@@ -107,16 +104,10 @@ public class ArticleManagerListBoard extends JList implements
 	}
 
 	private void createPadding() {
-		scrollPane
-				.setBorder(BorderFactory.createCompoundBorder(
-						BorderFactory
-								.createTitledBorder(
-										null,
-										"",
-										javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-										javax.swing.border.TitledBorder.DEFAULT_POSITION,
-										null), BorderFactory.createEmptyBorder(
-								1, 1, 1, 1)));
+		scrollPane.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+						javax.swing.border.TitledBorder.DEFAULT_POSITION, null),
+				BorderFactory.createEmptyBorder(1, 1, 1, 1)));
 	}
 
 	@Override

@@ -87,7 +87,7 @@ public class ArticleManagerPanel extends JPanel implements ComponentListener,
 		int articleManagerListBoardWidth = 400;
 		int width = getWidth();
 		int height = getHeight();
-		int editTitleBoardHeight = 50;
+		int editTitleBoardHeight = 70;
 		int buttonHeight = editButton.getHeight();
 		int buttonWidth = editButton.getWidth();
 		int buttonGap = 20;

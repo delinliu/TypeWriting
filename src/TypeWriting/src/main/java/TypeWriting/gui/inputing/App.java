@@ -99,7 +99,7 @@ public class App {
 	public static void main(String[] args) {
 
 		ApplicationContext factory = new ClassPathXmlApplicationContext(
-				"/resources/context.xml");
+				"context.xml");
 
 		App app = (App) factory.getBean("App");
 

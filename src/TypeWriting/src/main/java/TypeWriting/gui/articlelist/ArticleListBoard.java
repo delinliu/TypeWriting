@@ -1,7 +1,6 @@
 package TypeWriting.gui.articlelist;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -78,7 +77,7 @@ public class ArticleListBoard extends JList implements ListSelectionListener {
 
 	public void init() {
 		setBackground(Color.WHITE);
-		setFont(new Font("幼圆", Font.PLAIN, 15));
+		setFont(Config.ArticleListFont);
 		setBorder(null);
 		createScrollPane();
 		initContent();

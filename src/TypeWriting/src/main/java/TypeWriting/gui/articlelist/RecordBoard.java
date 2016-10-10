@@ -31,6 +31,7 @@ public class RecordBoard extends JTextPane {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public void display(Article article, List<Map<String, Object>> records) {
 		setText("");
 		try {
